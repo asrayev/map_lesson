@@ -19,10 +19,9 @@ class _MapPageState extends State<MapPage> {
   // List of items in our dropdown menu
   var items = [
     "house",
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+    "locality",
+    'street',
+    'region',
   ];
   @override
   Widget build(BuildContext context) {
