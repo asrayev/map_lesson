@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:map_lesson/ui/splash/splash_page.dart';
+import 'package:map_lesson/view_model/map_view_model.dart';
+import 'package:map_lesson/view_model/splash_view_model.dart';
+import 'package:provider/provider.dart';
 
+import 'data/response/geocoding_repository.dart';
+import 'data/service/api_service.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => MapViewModel(
+             geocodingRepo: GeocodingRepo(apiService: ApiService()
+              ),
+            ),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => SplashViewModel(
+
+              ),
+            ),
+
+        ],
+
+       child:  MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -5,6 +5,7 @@ import '../../data/response/geocoding_repository.dart';
 import '../../data/service/api_service.dart';
 import '../../view_model/map_view_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'map_picker_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key, required this.latLong}) : super(key: key);
@@ -57,7 +58,8 @@ class _MapPageState extends State<MapPage> {
                       }).toList(),
                       // After selecting the desired option,it will
                       // change button value to selected value
-                      onChanged: (String? newValue) {
+                      onChanged:
+                          (String? newValue) {
                         setState(() {
                           dropdownvalue = newValue!;
                         });
@@ -70,8 +72,25 @@ class _MapPageState extends State<MapPage> {
                       },
                       child: Text("GET map Data"),
                     ),
+                    InkWell(
+                      onTap: ((){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPickerPage(latLong: widget.latLong)));
+                      }),
+                      child: Container(
+                        height: 50,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.blue
+
+                         ),
+                        child: const Center(
+                          child: Text("Show in map", style: TextStyle(color: Colors.white),),
+                        ),
+                      ),
+                    ),
                     Padding(
-                      padding: EdgeInsets.only(right: 15, left: 25),
+                      padding: const EdgeInsets.only(right: 15, left: 25),
                       child: Text(
                         "${viewModel.addressText}",
                         style: const TextStyle(
@@ -93,4 +112,5 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
+
 
